@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ЛЕСНОЙ КЛУБ | Бутик-отель для шпицев и малых пород СПб</title>
+    <meta name="description" content="Профессиональная передержка собак малых пород в Санкт-Петербурге. Бесклеточное содержание, загородная резиденция, индивидуальный уход и забота.">
+    
+    <!-- Подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Иконки FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0d120d; /* Темный лесной */
+            --accent-color: #b08d57; /* Золото */
+            --text-light: #ffffff;
+            --text-dim: #a0a0a0;
+            --card-bg: #161d16;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* --- Шапка --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+            background: rgba(13, 18, 13, 0.1);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+        }
+
+        header.scrolled {
+            background: rgba(13, 18, 13, 0.9);
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+            border: 1px solid var(--accent-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        /* --- Hero Секция (Фикс для iOS) --- */
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh; /* Специально для Safari iOS */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(13, 18, 13, 0.6), rgba(13, 18, 13, 0.8)), 
+                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop') center/cover no-repeat;
+            padding: 100px 20px 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 8vw, 5rem);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .hero p.subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .hero p.description {
+            font-size: 1rem;
+            max-width: 550px;
+            margin: 0 auto 35px;
+            color: var(--text-dim);
+        }
+
+        .btn-premium {
+            display: inline-block;
+            padding: 16px 35px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 1px solid var(--accent-color);
+            cursor: pointer;
+            width: auto;
+        }
+
+        .btn-premium:hover {
+            background: transparent;
+            color: var(--accent-color);
+        }
+
+        /* --- Статистика --- */
+        .stats {
+            padding: 60px 0;
+            background: var(--card-bg);
+            border-top: 1px solid rgba(176, 141, 87, 0.15);
+            border-bottom: 1px solid rgba(176, 141, 87, 0.15);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+        }
+
+        /* --- Секции общие --- */
+        section {
+            padding: 80px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        /* --- Философия и Специализация --- */
+        .info-split {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .info-split:last-child { margin-bottom: 0; }
+
+        .info-split:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: var(--text-dim);
+        }
+
+        .info-image {
+            flex: 1;
+            min-height: 350px;
+            background-position: center;
+            background-size: cover;
+            border: 1px solid var(--accent-color);
+            position: relative;
+        }
+
+        /* --- Прайс (Улучшенная сетка для мобильных) --- */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid rgba(176, 141, 87, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .price-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .price-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            min-height: 3rem;
+        }
+
+        .price-card .cost {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .price-features li {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .price-features i {
+            color: var(--accent-color);
+            margin-right: 8px;
+            font-size: 0.75rem;
+        }
+
+        /* --- Правила --- */
+        .rules-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .rules-list li {
+            padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        .rules-list li i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        /* --- Футер --- */
+        footer {
+            padding: 60px 0 30px;
+            background: #050705;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-cta {
+            margin-bottom: 50px;
+        }
+
+        .footer-cta h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-phone {
+            display: block;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            margin: 15px 0;
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.4rem;
+            margin: 0 12px;
+        }
+
+        .legal-docs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .legal-docs a {
+            color: #555;
+            font-size: 0.7rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: #444;
+        }
+
+        /* --- Адаптивность --- */
+        @media (max-width: 991px) {
+            .nav-links { gap: 15px; }
+            .info-image { min-height: 300px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            
+            section { padding: 60px 0; }
+            
+            .info-split, .info-split:nth-child(even) {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .info-image {
+                width: 100%;
+                min-height: 250px;
+                order: -1; /* Картинка всегда сверху на мобильных */
+            }
+
+            .hero { padding-top: 80px; }
+            .hero h1 { font-size: 2.5rem; }
+            
+            .price-card { padding: 25px 15px; }
+            
+            .btn-premium {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+
+        /* Анимации при скролле (только если поддерживается) */
+        @media (prefers-reduced-motion: no-preference) {
+            .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Лесной Клуб</a>
+                <div class="nav-links">
+                    <a href="#about">О нас</a>
+                    <a href="#special">Специализация</a>
+                    <a href="#price">Услуги</a>
+                    <a href="#rules">Правила</a>
+                </div>
+                <a href="tel:+79119452238" class="mobile-menu-btn">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="subtitle">Бутик-отель для шпицев и малых пород</p>
+            <h1>Лесной Клуб</h1>
+            <p class="description">Личный патронаж и уют загородной резиденции в живописной лесной зоне Санкт-Петербурга.</p>
+            <a href="tel:+79119452238" class="btn-premium">Забронировать место</a>
+        </div>
+    </section>
+
+    <!-- Статистика -->
+    <div class="stats reveal">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>08</h3>
+                    <p>Мест в резиденции</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Видеоконтроль</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Без клеток</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Философия -->
+    <section id="about" class="container reveal">
+        <div class="section-header">
+            <h2>Приватность и внимание</h2>
+        </div>
+        <div class="info-split">
+            <div class="info-text">
+                <p>Мы — не конвейерная гостиница. В «Лесном Клубе» мы придерживаемся принципа камерности, принимая ограниченное количество гостей единовременно.</p>
+                <p>Это позволяет нам гарантировать, что каждый питомец получит столько ласки и внимания, сколько он привык получать дома. Никаких клеток и вольеров — только свободное перемещение и домашний уют.</p>
+            </div>
+            <div class="info-image" style="background-image: url('https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1935&auto=format&fit=crop');"></div>
+        </div>
+    </section>
+
+    <!-- Специализация -->
+    <section id="special" style="background: rgba(176, 141, 87, 0.03);">
+        <div class="container reveal">
+            <div class="section-header">
+                <h2>Почему только малые?</h2>
+            </div>
+            <div class="info-split">
+                <div class="info-text">
+                    <p><strong>Безопасность через единообразие.</strong> В нашем клубе строго ограничены породы: мы принимаем только шпицев, йорков, мальтипу и другие малые декоративные породы.</p>
+                    <p>Это полностью исключает риск случайных травм или стресса. Ваши питомцы гуляют и играют только с равными себе по размеру и темпераменту.</p>
+                </div>
+                <div class="info-image" style="background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1964&auto=format&fit=crop');"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Прайс-лист -->
+    <section id="price" class="container reveal">
+        <div class="section-header">
+            <h2>Стоимость услуг</h2>
+        </div>
+        <div class="price-grid">
+            <div class="price-card">
+                <h3>Бутик-резиденция</h3>
+                <div class="cost">2 000 ₽ <small style="font-size: 0.8rem; color: var(--text-dim);">/ сут.</small></div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> Индивидуальный уход</li>
+                    <li><i class="fas fa-check"></i> Фото/видео отчеты</li>
+                    <li><i class="fas fa-check"></i> Ветеринарный контроль</li>
+                </ul>
+                <a href="tel:+79119452238" class="btn-premium" style="padding: 12px; font-size: 0.75rem;">Выбрать</a>
+            </div>
+            <div class="price-card">
+                <h3>Услуги груминга</h3>
+                <div class="cost">от 1 200 ₽</div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> Мытье и вычес</li>
+                    <li><i class="fas fa-check"></i> Стрижка когтей</li>
+                    <li><i class="fas fa-check"></i> Гигиена ушей/глаз</li>
+                </ul>
+                <a href="tel:+79119452238" class="btn-premium" style="padding: 12px; font-size: 0.75rem;">Записаться</a>
+            </div>
+            <div class="price-card">
+                <h3>Малые питомцы</h3>
+                <div class="cost">300 ₽ <small style="font-size: 0.8rem; color: var(--text-dim);">/ сут.</small></div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> Грызуны, птицы</li>
+                    <li><i class="fas fa-check"></i> Режим кормления</li>
+                    <li><i class="fas fa-check"></i> Смена подстилки</li>
+                </ul>
+                <a href="tel:+79119452238" class="btn-premium" style="padding: 12px; font-size: 0.75rem;">Выбрать</a>
+            </div>
+            <div class="price-card">
+                <h3>Зоо-трансфер</h3>
+                <div class="cost">от 1 500 ₽</div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> Комфортное авто</li>
+                    <li><i class="fas fa-check"></i> Бережная доставка</li>
+                    <li><i class="fas fa-check"></i> Сопровождение</li>
+                </ul>
+                <a href="tel:+79119452238" class="btn-premium" style="padding: 12px; font-size: 0.75rem;">Заказать</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Правила приема -->
+    <section id="rules" class="container reveal">
+        <div class="section-header">
+            <h2>Правила приема</h2>
+        </div>
+        <ul class="rules-list">
+            <li><i class="fas fa-check"></i> Наличие ветеринарного паспорта.</li>
+            <li><i class="fas fa-check"></i> Действующие прививки и обработки.</li>
+            <li><i class="fas fa-check"></i> Только социализированные животные.</li>
+            <li><i class="fas fa-check"></i> Свой привычный корм.</li>
+        </ul>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Доверить нам друга</h2>
+                <p style="color: var(--text-dim); margin-bottom: 5px; font-size: 0.9rem;">Позвоните нам для бронирования:</p>
+                <a href="tel:+79119452238" class="footer-phone">+7 (911) 945-22-38</a>
+                <a href="tel:+79119452238" class="btn-premium">Позвонить сейчас</a>
+            </div>
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <div class="legal-docs">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Публичная оферта</a>
+                <a href="#">Согласие на обработку</a>
+                <a href="#">Реквизиты</a>
+            </div>
+
+            <p class="copyright">&copy; 2024 Лесной Клуб. СПб, Курортный район.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Скролл-эффект для хедера
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Плавное появление элементов
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Запустить один раз при загрузке
+        window.addEventListener("load", reveal);
+    </script>
+</body>
+</html>
